@@ -1,8 +1,9 @@
 import React from "react";
 import CartItem from "./CartItem";
 import { connect } from "react-redux";
+import { CLEAR_CART } from '../actions'
 
-const CartContainer = ({ cart = [], total }) => {
+const CartContainer = ({ cart = [], total, dispatch }) => {
   console.log(cart);
   if (cart.length === 0) {
     return (
@@ -35,13 +36,14 @@ const CartContainer = ({ cart = [], total }) => {
             total <span>$ {total}</span>
           </h4>
         </div>
-        <button className="btn clear-btn">clear cart</button>
+        <button className="btn clear-btn" onClick={() => { dispatch({ type: CLEAR_CART }) }}>clear cart</button>
       </footer>
     </section>
   );
 };
 
 const mapStateToProps = (store) => {
+  console.log(store);  //have access to the store/state (all data) and dispatch methods, check in react dev tool
   // const {cart,total}=store;
   // return{
   //   cart, total

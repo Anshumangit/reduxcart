@@ -20,7 +20,7 @@ const Navbar = ({ amount }) => {
 };
 
 const mapStateToProps = (statee) => {
-  // console.log(statee); //have access to the store/state (all data)
+  // console.log(statee); //have access to the store/state (all data) and dispatch methods
   return {
     amount: statee.amount //here we're mapping our state(here- amount) to props of a Navbar component
   }

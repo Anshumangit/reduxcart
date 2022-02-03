@@ -19,40 +19,20 @@ import cartItems from "./cart-items";
 import { createStore } from 'redux'
 
 import { INCREASE, DECREASE, RESET } from "./actions";
+import { reducer } from "./reducer";
+
+//react-redux- Provider-wraps app, connect- used in components
 
 //intial store or state
 const initialStore = {
-  count: 0,
-  name: 'anshu'
+  cart: cartItems,
+  total: 0,
+  amount: 0
 }
 
 //store.getState();  returns the latest state
 
-//reducer
-const reducer = (state, action) => {
-  console.log({ state, action });
-  if (action.type === DECREASE) {
-    // state.count = state.count - 1; wrong because redux built on immutability and always return new state
-    return { ...state, count: state.count - 1 }
-  }
-  if (action.type === INCREASE) {
-    return { ...state, count: state.count + 1 }
-  }
-  if (action.type === RESET) {
-    return { ...state, count: 0, name: "bob" }
-  }
-  if (action.type === "CHANGE_NAME") {
-    return { ...state, name: 'anshuman' }
-  }
-  return state;
-}
-
 const store = createStore(reducer, initialStore)
-store.dispatch({ type: "DECREASE" })
-store.dispatch({ type: "INCREASE" })
-store.dispatch({ type: "RESET" })
-store.dispatch({ type: "CHANGE_NAME" })
-
 console.log(store.getState());
 
 function App() {
@@ -60,7 +40,7 @@ function App() {
 
   return (
     <main>
-      <Navbar cart={store.getState()} />
+      <Navbar />
       <CartContainer cart={cartItems} />
     </main>
   );

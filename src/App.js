@@ -4,7 +4,6 @@ import Navbar from "./components/Navbar";
 import CartContainer from "./components/CartContainer";
 // items
 import cartItems from "./cart-items";
-// redux stuff
 
 //store- stores data, think of state
 //reducer-fucntion that used to update store
@@ -17,17 +16,16 @@ import cartItems from "./cart-items";
 //don't immutate state- redux built on immutability
 
 import { createStore } from 'redux'
-
-import { INCREASE, DECREASE, RESET } from "./actions";
+import { Provider } from "react-redux";
 import { reducer } from "./reducer";
 
-//react-redux- Provider-wraps app, connect- used in components
+//react-redux- Provider-wraps the whole app, connect- used in components to acces the state info
 
 //intial store or state
 const initialStore = {
   cart: cartItems,
   total: 0,
-  amount: 0
+  amount: 5
 }
 
 //store.getState();  returns the latest state
@@ -37,12 +35,14 @@ console.log(store.getState());
 
 function App() {
   // cart setup
-
+  //every component wrapped in a provider can access the store, 
+  //can access the dispatch method(means setup the actions/dispatch the actions)
+  //after setting everything up using connect fucntions in every component
   return (
-    <main>
+    <Provider store={store}>
       <Navbar />
       <CartContainer cart={cartItems} />
-    </main>
+    </Provider>
   );
 }
 

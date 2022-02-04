@@ -26,7 +26,29 @@ export const reducer = (state, action) => {
     }
 
     if (action.type === DECREASE) {
-        console.log("you decreased");
+        let dtempcart = []
+        if (action.payload.amount === 1) {
+            dtempcart = state.cart.filter((fval) => {
+                return fval.id !== action.payload.id
+            })
+        }
+
+        else {
+
+            dtempcart = state.cart.map((cval) => {
+                if (cval.id === action.payload.id) {
+                    return {
+                        ...cval,
+                        amount: cval.amount - 1
+                    }
+                }
+                return cval
+            })
+        }
+        return {
+            ...state,
+            cart: dtempcart
+        }
     }
 
     if (action.type === REMOVE) {

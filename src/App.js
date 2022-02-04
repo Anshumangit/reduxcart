@@ -24,13 +24,13 @@ import { reducer } from "./reducer";
 //intial store or state
 const initialStore = {
   cart: cartItems,
-  total: 120,
-  amount: 5
+  total: 0,
+  amount: 0
 }
 
 //store.getState();  returns the latest state
 
-const store = createStore(reducer, initialStore)
+const store = createStore(reducer, initialStore, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 // console.log(store.getState());
 
 function App() {

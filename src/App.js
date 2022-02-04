@@ -31,7 +31,7 @@ const initialStore = {
 //store.getState();  returns the latest state
 
 const store = createStore(reducer, initialStore)
-console.log(store.getState());
+// console.log(store.getState());
 
 function App() {
   // cart setup

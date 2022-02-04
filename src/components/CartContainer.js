@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { CLEAR_CART } from '../actions'
 
 const CartContainer = ({ cart = [], total, dispatch }) => {
-  console.log(cart);
+  // console.log(cart);
   if (cart.length === 0) {
     return (
       <section className="cart">
@@ -43,7 +43,7 @@ const CartContainer = ({ cart = [], total, dispatch }) => {
 };
 
 const mapStateToProps = (store) => {
-  console.log(store);  //have access to the store/state (all data) and dispatch methods, check in react dev tool
+  // console.log(store);  //have access to the store/state (all data) and dispatch methods, check in react dev tool
   // const {cart,total}=store;
   // return{
   //   cart, total

@@ -17,17 +17,35 @@ export const reducer = (state, action) => {
     }
 
     if (action.type === REMOVE) {
-        const reitem = state.cart.filter((fval) => {
-            return fval.id !== action.payload
+        console.log("you removed");
+        const remain = state.cart.filter((fval) => {
+            return fval.id !== action.payload.id;
         })
         return {
             ...state,
-            cart: reitem
+            cart: remain
         }
-        console.log("you removed");
     }
 
+
+    //below using mapStateToProps, bt not good practice
+    // if (action.type === REMOVE) {
+    //     const reitem = state.cart.filter((fval) => {
+    //         return fval.id !== action.payload
+    //     })
+    //     return {
+    //         ...state,
+    //         cart: reitem
+    //     }
+    //     console.log("you removed");
+    // }
+
     return state;
+
+
+
+
+
 
     // switch (action.type) {
     //     case CLEAR_CART:

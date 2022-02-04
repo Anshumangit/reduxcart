@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { REMOVE } from "../actions";
+import { REMOVE, INCREASE, DECREASE } from "../actions";
 
-const CartItem = ({ img, title, price, amount, dispatch, id }) => {
+const CartItem = ({ img, title, price, amount, id, remove, dispatch }) => {
   return (
     <div className="cart-item">
       <img src={img} alt={title} />
@@ -10,7 +10,9 @@ const CartItem = ({ img, title, price, amount, dispatch, id }) => {
         <h4>{title}</h4>
         <h4 className="item-price">${price}</h4>
         {/* remove button */}
-        <button className="remove-btn" onClick={() => { dispatch({ type: REMOVE, payload: id }) }}>remove</button>
+        <button className="remove-btn" onClick={() => { remove() }}>remove</button>
+        {/* <button className="remove-btn" onClick={() => { dispatch({ type: REMOVE, payload: id }) }}>remove</button> */}
+
       </div>
       <div>
         {/* increase amount */}
@@ -32,9 +34,30 @@ const CartItem = ({ img, title, price, amount, dispatch, id }) => {
   );
 };
 
-const mapStateToProps = (st) => {
-  console.log(st);
-  return {}
+const mapDispatchToProps = (dispatch, ownProps) => {
+  // console.log(dispatch);
+  console.log(ownProps);
+  const { id } = ownProps;
+  return {
+    remove: () => { dispatch({ type: REMOVE, payload: { id: id } }) }
+  }
 }
 
-export default connect(mapStateToProps)(CartItem);
+export default connect(null, mapDispatchToProps)(CartItem);
+
+
+
+
+
+
+
+// const mapStateToProps = (st) => {
+//   console.log(st);
+//   return {
+
+//   }
+// }
+// export default connect(mapStateToProps)(CartItem);
+//you can use mapStateToProps for dispatch as it is already available
+//by default as props in the componen but it is not a good pratcice
+//so we use separate mapDispatchToProps to pass the dispatch method as props in component

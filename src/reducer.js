@@ -9,7 +9,20 @@ export const reducer = (state, action) => {
     }
 
     if (action.type === INCREASE) {
-        console.log("you increased");
+        const tempcart = state.cart.map((cval) => {
+            console.log(cval);
+            if (cval.id === action.payload.id) {
+                return {
+                    ...cval,
+                    amount: cval.amount + 1
+                }
+            }
+            return cval
+        })
+        return {
+            ...state,
+            cart: tempcart
+        }
     }
 
     if (action.type === DECREASE) {
